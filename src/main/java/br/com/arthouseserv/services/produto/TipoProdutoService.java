@@ -15,7 +15,12 @@ public class TipoProdutoService {
         this.tipoProdutoRepository = tipoProdutoRepository;
     }
 
-    public TipoProduto getTipoProduto(Integer idProduto) {
-        return tipoProdutoRepository.findById(idProduto).orElseThrow(() -> new ProdutosExceptions("Tipo produto não encontrado"));
+    public TipoProduto getTipoProduto(String nomeTipoProduto) {
+        try {
+            return tipoProdutoRepository.findTipoProdutoByNomeTipoProduto(nomeTipoProduto);
+
+        }catch (Exception e){
+            throw new ProdutosExceptions("Tipo produto não encontrado");
+        }
     }
 }

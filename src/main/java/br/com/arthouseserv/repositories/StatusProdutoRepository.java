@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StatusProdutoRepository extends JpaRepository<StatusProduto,Integer> {
+
+    StatusProduto findStatusProdutoByNomeStatusProduto(String nomeStatusProduto);
 }

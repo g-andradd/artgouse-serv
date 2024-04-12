@@ -24,12 +24,20 @@ public class CorProdutoService {
         this.corProdutoMapper = corProdutoMapper;
     }
 
-    public CorProduto buscarCoresProduto(Integer idCorProduto){
+    public CorProduto buscarCoresProduto(Integer idCorProduto) {
         return corProdutoRepository.findById(idCorProduto).orElseThrow(() -> new ProdutosExceptions("Cor do produto não encontrado"));
     }
 
+    public CorProduto buscarCoresProdutoByNome(String nomeCorProduto) {
+        try {
+            return corProdutoRepository.findCorProdutoByNomeCorProduto(nomeCorProduto);
+        } catch (Exception e) {
+            throw new ProdutosExceptions("Cor do produto não encontrado");
+        }
+    }
 
-    public List<CoresDTO> buscarListaCores(){
+
+    public List<CoresDTO> buscarListaCores() {
         return corProdutoRepository.buscarCores();
     }
 

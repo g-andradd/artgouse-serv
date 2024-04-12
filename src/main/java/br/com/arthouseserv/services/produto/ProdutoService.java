@@ -4,7 +4,11 @@ import br.com.arthouseserv.dto.*;
 import br.com.arthouseserv.exception.ProdutosExceptions;
 import br.com.arthouseserv.mappers.ProdutoMapper;
 import br.com.arthouseserv.models.Produto;
+import br.com.arthouseserv.models.StatusProduto;
+import br.com.arthouseserv.models.TipoProduto;
 import br.com.arthouseserv.repositories.ProdutoRepository;
+import br.com.arthouseserv.repositories.StatusProdutoRepository;
+import br.com.arthouseserv.repositories.TipoProdutoRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -26,14 +30,15 @@ public class ProdutoService {
     private final CorProdutoProdutoService corProdutoProdutoService;
     private final CorProdutoService corProdutoService;
     private final StatusProdutoService statusProdutoService;
-
     private final CalculoRolosService calculoRolosService;
+    private final StatusProdutoRepository statusProdutoRepository;
+    private final TipoProdutoRepository tipoProdutoRepository;
 
     public ProdutoService(ProdutoRepository produtoRepository, TipoProdutoService tipoProdutoService,
                           ProdutoMapper produtoMapper, CaracteriticaProdutoService caracteriticaProdutoService,
                           CaracteristicaProdutoProdutoService caracteristicaProdutoProdutoService,
                           CorProdutoProdutoService corProdutoProdutoService,
-                          CorProdutoService corProdutoService, StatusProdutoService statusProdutoService, CalculoRolosService calculoRolosService) {
+                          CorProdutoService corProdutoService, StatusProdutoService statusProdutoService, CalculoRolosService calculoRolosService, StatusProdutoRepository statusProdutoRepository, TipoProdutoRepository tipoProdutoRepository) {
         this.produtoRepository = produtoRepository;
         this.tipoProdutoService = tipoProdutoService;
         this.produtoMapper = produtoMapper;
@@ -43,21 +48,23 @@ public class ProdutoService {
         this.corProdutoService = corProdutoService;
         this.statusProdutoService = statusProdutoService;
         this.calculoRolosService = calculoRolosService;
+        this.statusProdutoRepository = statusProdutoRepository;
+        this.tipoProdutoRepository = tipoProdutoRepository;
     }
 
     public Produto cadastroProdutos(MultipartFile multipartFile, ResponseProdutoDTO responseProdutoDTO) throws IOException {
 
-        var tipoProduto = tipoProdutoService.getTipoProduto(responseProdutoDTO.tipoProdutoDTO().idTipoProduto());
-        var statusProduto = statusProdutoService.getStatusProdutoById(responseProdutoDTO.statusProduto());
+        var tipoProduto = tipoProdutoService.getTipoProduto(responseProdutoDTO.tipoProdutoDTO());
+        var statusProduto = statusProdutoService.getStatusProdutoByNome(responseProdutoDTO.statusProduto());
         var retornoProdutoSalvo = saveProduto(produtoMapper.produtoDTOToEntity(multipartFile,tipoProduto,statusProduto, responseProdutoDTO.descricao()));
 
         responseProdutoDTO.caracteristicasProdutoDTO().forEach(x -> {
-            var caracteristicasProduto = caracteriticaProdutoService.buscarCaracteristicasProduto(x.idCaracteristicasProduto());
+            var caracteristicasProduto = caracteriticaProdutoService.buscarCaracteristicasProdutoByNome(x);
             caracteristicaProdutoProdutoService.saveCaracteristicaProdutoProduto(retornoProdutoSalvo, caracteristicasProduto);
         });
 
         responseProdutoDTO.coresProdutoDTO().forEach(x -> {
-            var corProduto = corProdutoService.buscarCoresProduto(x.idCorProduto());
+            var corProduto = corProdutoService.buscarCoresProdutoByNome(x);
             corProdutoProdutoService.saveCoresProdutoProduto(corProduto, retornoProdutoSalvo);
         });
         return retornoProdutoSalvo;
@@ -122,5 +129,13 @@ public class ProdutoService {
 
     public ProdutoIdDTO buscaProdutoPorId(Integer idProduto){
         return produtoRepository.buscaProdutoPorId(idProduto);
+    }
+
+    public List<TipoProduto> buscarTodosTipoProdutos(){
+        return tipoProdutoRepository.findAll();
+    }
+
+    public List<StatusProduto> buscarStatusTipoProdutos(){
+        return statusProdutoRepository.findAll();
     }
 }

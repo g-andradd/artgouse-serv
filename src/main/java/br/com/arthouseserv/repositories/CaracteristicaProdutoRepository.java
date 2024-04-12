@@ -15,4 +15,6 @@ public interface CaracteristicaProdutoRepository extends JpaRepository<Caracteri
             "cp.nomeCaracterisiticasProduto,cp.imgCaracterisiticasProduto) " +
             "FROM CaracteristicaProduto cp")
     List<CaracteristicasDTO> buscarCaracteristicas();
+
+    CaracteristicaProduto findCaracteristicaProdutoByNomeCaracterisiticasProduto(String nomeCararacteristicasProduto);
 }

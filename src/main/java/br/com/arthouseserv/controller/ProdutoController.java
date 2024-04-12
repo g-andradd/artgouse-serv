@@ -116,4 +116,21 @@ public class ProdutoController {
         }
     }
 
+    @GetMapping("cadastro/tipos")
+    public ResponseEntity<?> buscarTodosTipoProdutos() {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(produtoService.buscarTodosTipoProdutos());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+    @GetMapping("cadastro/status")
+    public ResponseEntity<?> buscarTodosStatusProdutos() {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(produtoService.buscarStatusTipoProdutos());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
 }

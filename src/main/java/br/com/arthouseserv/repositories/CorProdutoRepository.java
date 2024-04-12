@@ -17,5 +17,7 @@ public interface CorProdutoRepository extends JpaRepository<CorProduto,Integer> 
             "FROM CorProduto cp")
     List<CoresDTO> buscarCores();
 
+    CorProduto findCorProdutoByNomeCorProduto(String nomeCorProduto);
+
 
 }

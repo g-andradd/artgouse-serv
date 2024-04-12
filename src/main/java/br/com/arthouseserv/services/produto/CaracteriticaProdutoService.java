@@ -25,7 +25,17 @@ public class CaracteriticaProdutoService {
     }
 
     public CaracteristicaProduto buscarCaracteristicasProduto(Integer idCaracteristicasProduto) {
+
         return caracteristicaProdutoRepository.findById(idCaracteristicasProduto).orElseThrow(() -> new ProdutosExceptions("Caracteristicas do produto não foi encontrada!"));
+    }
+
+    public CaracteristicaProduto buscarCaracteristicasProdutoByNome(String nomeCaracteristicasProduto) {
+        try {
+            return caracteristicaProdutoRepository.findCaracteristicaProdutoByNomeCaracterisiticasProduto(nomeCaracteristicasProduto);
+        } catch (Exception e) {
+            throw new ProdutosExceptions("Caracteristicas do produto não foi encontrada!");
+        }
+
     }
 
     public List<CaracteristicasDTO> buscarListaCaracteristicas() {

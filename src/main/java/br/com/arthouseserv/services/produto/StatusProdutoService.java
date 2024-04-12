@@ -14,7 +14,12 @@ public class StatusProdutoService {
         this.statusProdutoRepository = statusProdutoRepository;
     }
 
-    public StatusProduto getStatusProdutoById(Integer idStatusProduto) {
-        return statusProdutoRepository.findById(idStatusProduto).orElseThrow(() -> new ProdutosExceptions(" Status de Produto não existente !"));
+    public StatusProduto getStatusProdutoByNome(String nomeStatusProduto) {
+        try {
+            return statusProdutoRepository.findStatusProdutoByNomeStatusProduto(nomeStatusProduto);
+
+        }catch (Exception e){
+            throw new ProdutosExceptions(" Status de Produto não existente !");
+        }
     }
 }
