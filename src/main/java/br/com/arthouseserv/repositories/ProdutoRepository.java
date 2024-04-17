@@ -25,6 +25,7 @@ public interface ProdutoRepository extends JpaRepository<Produto, Integer> {
             "LEFT JOIN p.statusProduto sp " +
             "WHERE(:cores IS NULL OR cp.nomeCorProduto IN :cores) " +
             "AND(:caracteristicas IS NULL OR crcp.nomeCaracterisiticasProduto IN :caracteristicas) " +
+            "GROUP BY p.idProduto,p.contProduto,sp.nomeStatusProduto,p.nomeProduto,p.descProduto " +
             "ORDER BY CASE " +
             "WHEN sp.idStatusProduto NOT IN (:ordenacaoUm,:ordenacaoDois) THEN 1 " +
             "WHEN sp.idStatusProduto = :ordenacaoUm THEN 2 " +

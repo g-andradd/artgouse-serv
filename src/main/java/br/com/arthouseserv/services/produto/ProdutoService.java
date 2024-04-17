@@ -54,16 +54,16 @@ public class ProdutoService {
 
     public Produto cadastroProdutos(MultipartFile multipartFile, ResponseProdutoDTO responseProdutoDTO) throws IOException {
 
-        var tipoProduto = tipoProdutoService.getTipoProduto(responseProdutoDTO.tipoProdutoDTO());
+        var tipoProduto = tipoProdutoService.getTipoProduto(responseProdutoDTO.tipoProduto());
         var statusProduto = statusProdutoService.getStatusProdutoByNome(responseProdutoDTO.statusProduto());
         var retornoProdutoSalvo = saveProduto(produtoMapper.produtoDTOToEntity(multipartFile,tipoProduto,statusProduto, responseProdutoDTO.descricao()));
 
-        responseProdutoDTO.caracteristicasProdutoDTO().forEach(x -> {
+        responseProdutoDTO.caracteristicasProduto().forEach(x -> {
             var caracteristicasProduto = caracteriticaProdutoService.buscarCaracteristicasProdutoByNome(x);
             caracteristicaProdutoProdutoService.saveCaracteristicaProdutoProduto(retornoProdutoSalvo, caracteristicasProduto);
         });
 
-        responseProdutoDTO.coresProdutoDTO().forEach(x -> {
+        responseProdutoDTO.coresProduto().forEach(x -> {
             var corProduto = corProdutoService.buscarCoresProdutoByNome(x);
             corProdutoProdutoService.saveCoresProdutoProduto(corProduto, retornoProdutoSalvo);
         });
