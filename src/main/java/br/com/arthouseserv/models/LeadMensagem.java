@@ -3,7 +3,7 @@ package br.com.arthouseserv.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "mensagem")
+@Table(name = "MENSAGEM")
 public class LeadMensagem extends DefaultCriacao{
 
     @Id

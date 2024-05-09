@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "cliente_lead")
+@Table(name = "CLIENTE_LEAD")
 public class Lead extends DefaultCriacao{
 
     @Id

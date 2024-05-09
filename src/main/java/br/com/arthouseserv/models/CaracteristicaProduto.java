@@ -3,7 +3,7 @@ package br.com.arthouseserv.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "caracteristicas_produto")
+@Table(name = "CARACTERISTICAS_PRODUTO")
 public class CaracteristicaProduto {
 
     @Id

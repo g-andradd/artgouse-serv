@@ -2,8 +2,12 @@
 spring:
   config:
     activate:
-      on-profile: andrade
+      on-profile: homol
 ---
 spring:
   profiles:
     active: mineiro
+---
+spring:
+  profiles:
+    active: andrade

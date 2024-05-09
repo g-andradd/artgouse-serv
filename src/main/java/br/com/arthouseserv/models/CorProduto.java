@@ -3,7 +3,7 @@ package br.com.arthouseserv.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "cores_produto")
+@Table(name = "CORES_PRODUTO")
 public class CorProduto {
 
 

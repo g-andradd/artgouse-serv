@@ -5,7 +5,7 @@ spring:
         enabled: true
   datasource:
     username: root
-    url: jdbc:mysql://localhost:3306/arthouse?useTimezone=true&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/test?useTimezone=true&serverTimezone=UTC
     password: root
   jpa:
     properties:

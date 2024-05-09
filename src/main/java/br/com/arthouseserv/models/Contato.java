@@ -3,7 +3,7 @@ package br.com.arthouseserv.models;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "contato_cliente_lead")
+@Table(name = "CONTATO_CLIENTE_LEAD")
 public class Contato extends  DefaultCriacao{
 
     @Id
