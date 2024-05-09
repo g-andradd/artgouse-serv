@@ -1,0 +1,20 @@
+version: '3.2'
+services:
+  arthouse-serv:
+    build:
+      context: ../arthouse-serv
+      dockerfile: ../arthouse-serv/Dockerfile
+    image: fallsoft/arthouse-serv:latest
+    ports:
+      - 8080:8080
+    container_name: arthouse-serv
+    environment:
+      - MYSQL_USER=u749392768_arthouse
+      - MYSQL_URL=srv622.hstgr.io
+      - MYSQL_DATABASE=u749392768_db_arthouse
+      - MYSQL_PASSWORD=Meerrajeison1
+    networks:
+      - backend
+networks:
+  backend:
+    driver: "bridge"
