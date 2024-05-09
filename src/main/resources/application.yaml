@@ -1,4 +1,3 @@
-
 spring:
   config:
     activate:
@@ -11,3 +10,7 @@ spring:
 spring:
   profiles:
     active: andrade
+---
+spring:
+  profiles:
+    active: homol
