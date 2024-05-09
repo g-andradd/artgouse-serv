@@ -4,9 +4,9 @@ spring:
       repositories:
         enabled: true
   datasource:
-    username: ${MYSQL_USER}
-    url: jdbc:mysql://${MYSQL_URL}:3306/${MYSQL_DATABASE}
-    password: ${MYSQL_PASSWORD}
+    username: ${MYSQL_USER:u749392768_arthouse}
+    url: jdbc:mysql://${MYSQL_URL:srv622.hstgr.io}:3306/${MYSQL_DATABASE:u749392768_db_arthouse}
+    password: ${MYSQL_PASSWORD:Meerrajeison1}
     maxLifetime: 1800000 # Tempo máximo de vida da conexão em milissegundos (30 minutos)
   jpa:
     properties:
