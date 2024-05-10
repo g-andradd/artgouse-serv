@@ -1,5 +1,6 @@
 package br.com.arthouseserv.repositories;
 
+import br.com.arthouseserv.dto.CaracteristicasCadastroDTO;
 import br.com.arthouseserv.dto.CaracteristicasDTO;
 import br.com.arthouseserv.models.CaracteristicaProduto;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,4 +18,9 @@ public interface CaracteristicaProdutoRepository extends JpaRepository<Caracteri
     List<CaracteristicasDTO> buscarCaracteristicas();
 
     CaracteristicaProduto findCaracteristicaProdutoByNomeCaracterisiticasProduto(String nomeCararacteristicasProduto);
+
+    @Query(" SELECT new br.com.arthouseserv.dto.CaracteristicasCadastroDTO(cp.idCaracteristicasProduto," +
+            "cp.nomeCaracterisiticasProduto) " +
+            "FROM CaracteristicaProduto cp")
+    List<CaracteristicasCadastroDTO> buscarCaracteristicasCadastro();
 }
