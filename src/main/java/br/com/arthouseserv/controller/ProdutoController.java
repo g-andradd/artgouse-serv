@@ -133,4 +133,22 @@ public class ProdutoController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+
+    @GetMapping("cadastro/caracteristicas")
+    public ResponseEntity<?> listarCadastroCaracteriticas() {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(produtoService.listarCadastroCaracteristicas());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
+
+    @GetMapping("cadastro/cores")
+    public ResponseEntity<?> listarCadastroCores() {
+        try {
+            return ResponseEntity.status(HttpStatus.OK).body(produtoService.listarCadastroCores());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+    }
 }

@@ -1,6 +1,7 @@
 package br.com.arthouseserv.services.produto;
 
 import br.com.arthouseserv.dto.CorProdutoDTO;
+import br.com.arthouseserv.dto.CoresCadastroDTO;
 import br.com.arthouseserv.dto.CoresDTO;
 import br.com.arthouseserv.exception.ProdutosExceptions;
 import br.com.arthouseserv.mappers.CorProdutoMapper;
@@ -45,5 +46,9 @@ public class CorProdutoService {
         var cores = buscarCoresProduto(idCores);
         cores.setImgCorProduto(imagem.getBytes());
         corProdutoRepository.save(cores);
+    }
+
+    public List<CoresCadastroDTO> buscarListaCoresCadastro() {
+        return corProdutoRepository.buscarCoresCadastro();
     }
 }

@@ -1,6 +1,7 @@
 package br.com.arthouseserv.services.produto;
 
 import br.com.arthouseserv.dto.CaracteristicaProdutoDTO;
+import br.com.arthouseserv.dto.CaracteristicasCadastroDTO;
 import br.com.arthouseserv.dto.CaracteristicasDTO;
 import br.com.arthouseserv.exception.ProdutosExceptions;
 import br.com.arthouseserv.mappers.CaracteristicaProdutoMapper;
@@ -46,5 +47,9 @@ public class CaracteriticaProdutoService {
         var caracteristicas = buscarCaracteristicasProduto(idCaracteristicas);
         caracteristicas.setImgCaracterisiticasProduto(imagem.getBytes());
         caracteristicaProdutoRepository.save(caracteristicas);
+    }
+
+    public List<CaracteristicasCadastroDTO> buscarListaCaracteristicasCadastro() {
+        return caracteristicaProdutoRepository.buscarCaracteristicasCadastro();
     }
 }

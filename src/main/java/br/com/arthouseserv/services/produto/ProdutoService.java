@@ -138,4 +138,12 @@ public class ProdutoService {
     public List<StatusProduto> buscarStatusTipoProdutos(){
         return statusProdutoRepository.findAll();
     }
+
+    public List<CaracteristicasCadastroDTO> listarCadastroCaracteristicas() {
+        return caracteriticaProdutoService.buscarListaCaracteristicasCadastro();
+    }
+
+    public List<CoresCadastroDTO> listarCadastroCores() {
+        return corProdutoService.buscarListaCoresCadastro();
+    }
 }
