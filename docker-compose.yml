@@ -1,5 +1,19 @@
-version: '3.2'
+version: '3.8'
 services:
+  arthouse_db:
+    build:
+      context: ./arthouse_db
+    image: fallsoft/arthouse_db:latest
+    ports:
+      - 3306:3306
+    container_name: arthouse_db
+    environment:
+      - MYSQL_ROOT_PASSWORD=Meerrajeison1
+      - MYSQL_DATABASE=arthouse
+      - MYSQL_USER=arthouse
+      - MYSQL_PASSWORD=arthouse-db
+    networks:
+      - backend
   arthouse-serv:
     build:
       context: ../arthouse-serv
@@ -9,10 +23,11 @@ services:
       - 8080:8080
     container_name: arthouse-serv
     environment:
-      - MYSQL_USER=u749392768_arthouse
-      - MYSQL_URL=srv622.hstgr.io
-      - MYSQL_DATABASE=u749392768_db_arthouse
-      - MYSQL_PASSWORD=Meerrajeison1
+      SPRING_DATASOURCE_URL: jdbc:mysql://arthouse_db:3306/arthouse
+      SPRING_DATASOURCE_USERNAME: arthouse
+      SPRING_DATASOURCE_PASSWORD: arthouse-db
+    depends_on:
+      - arthouse_db
     networks:
       - backend
 networks:
