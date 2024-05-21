@@ -2,7 +2,7 @@ version: '3.8'
 services:
   arthouse_db:
     build:
-      context: ./arthouse_db
+      context: ./arthouse-db
     image: fallsoft/arthouse_db:latest
     ports:
       - 3306:3306
