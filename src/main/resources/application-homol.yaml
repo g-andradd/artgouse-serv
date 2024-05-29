@@ -19,10 +19,3 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true
-server:
-  port: 8050
-  ssl:
-    key-store: classpath:keystore.p12
-    key-store-password: arthouse
-    key-store-type: PKCS12
-    key-alias: springboot
