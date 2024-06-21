@@ -10,7 +10,7 @@
     </parent>
     <groupId>br.com.arthouseserv</groupId>
     <artifactId>arthouse-serv</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <name>arthouse-serv</name>
     <description>arthouse-serv</description>
     <properties>
